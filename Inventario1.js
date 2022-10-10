@@ -4,7 +4,20 @@ class Inventario {
     }
 
     agregar(producto) {
-        this.vector[this.vector.length] = producto
+        this.vector[this.vector.length] = producto;
+        if (this.vector.length > 1) {
+            for (let i = 0; i < this.vector.length; i++) {
+                if (this.vector[this.vector.length - 1].codigo < this.vector[i].codigo) {
+                    this.vector[this.vector.length] = this.vector[this.vector.length - 1]
+                    for (let j = this.vector.length - 1; j > i; j--) {
+                        this.vector[j] = this.vector[j - 1]
+                    }
+                    this.vector[i] = this.vector[this.vector.length - 1]
+                    this.vector.pop()
+                    return true;
+                }
+            }
+        }
     }
 
     eliminar(codigo) {
@@ -78,13 +91,14 @@ let p1 = new Producto(123, "teclado", 4, 200);
 let p2 = new Producto(132, "mouse", 6, 50);
 let p3 = new Producto(222, "Lapiz", 10, 5);
 let p4 = new Producto(333, "Borrador", 15, 4);
+let p5 = new Producto(1000, "Libro", 100, 1000)
+let p6 = new Producto(200, "Audifonos", 13, 250)
 
-i.agregar(p1)
-i.agregar(p2)
-i.agregar(p3)
-i.agregar(p4)
-i.eliminar(0)
+i.agregar(p4);
+i.agregar(p3);
+i.agregar(p2);
+i.agregar(p1);
+i.agregar(p5);
+i.agregar(p6);
 
-
-let a = 10;
-let b = 20;
+console.log(busquedaBin(vec, 5))
