@@ -43,12 +43,23 @@ class Inventario {
     }
 
     buscar(codigo) {
-        for (let i = 0; i < this.vector.length; i++) {
-            if (codigo === this.vector[i].codigo) {
-                return this.vector[i]
-            }
+        let start = 0;
+        let end = this.vector.length - 1
+        let midd = Math.floor((start + end) / 2)
+
+        if (this.vector[midd].codigo === codigo) {
+            return this.vector[midd]
         }
-        return null
+
+        while (this.vector[midd].codigo != codigo) {
+            if (codigo < this.vector[midd].codigo) {
+                end = midd - 1
+            } else {
+                start = midd + 1
+            }
+            midd = Math.floor((start + end) / 2)
+        }
+        return this.vector[midd]
     }
 
     listado() {
@@ -100,5 +111,5 @@ i.agregar(p2);
 i.agregar(p1);
 i.agregar(p5);
 i.agregar(p6);
-
-console.log(busquedaBin(vec, 5))
+console.log(i)
+console.log(i.buscar(3))
